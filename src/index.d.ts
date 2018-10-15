@@ -28,8 +28,10 @@ interface CreateOrderOptions {
 interface Order {
   id: number;
   status: string;
+  do_not_convert: boolean,
   price_currency: string;
   price_amount: string;
+  lightning_network: boolean,
   pay_currency?: string;
   pay_amount?: string;
   receive_currency: string;
@@ -39,6 +41,7 @@ interface Order {
   payment_address?: string;
   order_id: string;
   payment_url: string;
+  token?: string;
 }
 
 interface ErrorCreateOrder {
