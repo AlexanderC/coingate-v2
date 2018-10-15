@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Node.js Library for Coingate V2 API",
   "main": "src/index.js",
+  "typings": "src/index.d.ts",
   "nyc": {
     "exclude": [
       "src/client/error/**"
