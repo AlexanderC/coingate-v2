@@ -6,7 +6,7 @@ export let Config: ConfigType;
 interface ClientType {
   createOrder(options: CreateOrderOptions): Promise<(Order | ErrorCreateOrder)>;
   getOrder(orderId: number): Promise<(Order | ErrorGetOrder)>;
-  listOrders(options: ListOrderOptions): Promise<ListOrdersReturn>;
+  listOrders(options?: ListOrderOptions): Promise<ListOrdersReturn>;
   getExchangeRate(from: string, to: string): Promise<number>;
   listExchangeRates(): Promise<ExchangeRatesReturn>;
   ping(): Promise<PingReturn>;
