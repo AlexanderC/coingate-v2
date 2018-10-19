@@ -7,7 +7,7 @@ const api = require('./api');
 
 class Coingate {
   /**
-   * @param {*} config 
+   * @param {*} config
    */
   constructor(config) {
     this.config = config;
@@ -15,7 +15,7 @@ class Coingate {
 
   /**
    * Injects API methods from config
-   * @param {*} metadata 
+   * @param {*} metadata
    */
   injectApiMethods(metadata) {
     for (let name of Object.keys(metadata)) {
@@ -23,7 +23,7 @@ class Coingate {
         const { method, entity, data, params, transform } = await metadata[name](...args);
 
         let result = await this.request(method, entity, data, params);
-        
+
         if (transform && typeof transform === 'function') {
           result = await transform(result);
         }
@@ -37,9 +37,9 @@ class Coingate {
 
   /**
    * Make a request to API
-   * @param {string} method 
+   * @param {string} method
    * @param {string} entity
-   * @param {*} data 
+   * @param {*} data
    * @param {*} params
    */
   async request(method, entity, data, params) {
@@ -47,7 +47,7 @@ class Coingate {
     const { apiUrl, apiBase } = this.config;
     const { headers } = this;
     const url = new URL(path.join(apiBase, entity), apiUrl).toString();
-    
+
     try {
       response = await axios.request({
         method, headers, data, params, url,
@@ -77,7 +77,7 @@ class Coingate {
   get authHeaders() {
     return { 'Authorization': `Token ${ this.config.token }` };
   }
-  
+
   /**
    * Create Coingate client
    */
