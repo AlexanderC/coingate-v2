@@ -1,7 +1,7 @@
 class RequestFailedError extends Error {
   /**
    * @param {string} url
-   * @param {*} response 
+   * @param {*} response
    */
   constructor(url, response) {
     const { message, reason } = response instanceof Error ? response : response.data;
@@ -13,6 +13,7 @@ class RequestFailedError extends Error {
     this.url = url;
     this.response = response;
     this.reason = reason;
+    this.data = response.data;
   }
 }
 
