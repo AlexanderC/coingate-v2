@@ -53,6 +53,9 @@ class Coingate {
         method, headers, data, params, url,
       });
     } catch (error) {
+      if (error.response) {
+        error = error.response;
+      }
       throw new RequestFailedError(url, error);
     }
 

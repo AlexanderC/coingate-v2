@@ -13,6 +13,7 @@ class RequestFailedError extends Error {
     this.url = url;
     this.response = response;
     this.reason = reason;
+    this.data = response.data;
   }
 }
 
