@@ -65,6 +65,13 @@ describe('Client', () => {
     expect(result.orders).to.have.lengthOf.at.least(1);
     expect(result.orders[0]).to.deep.equal(order);
   });
+  
+  it('should be able to checkout an order', async () => {
+    const pay_currency = 'BTC';
+    const orderToCheckout = await client.checkoutOrder(order.id, pay_currency);
+
+    expect(orderToCheckout.pay_currency).to.equal(pay_currency);
+  });
 
   it('should be able to ping', async () => {
     const result = await client.ping();
