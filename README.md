@@ -34,6 +34,11 @@ await coingate.createOrder({
 // https://developer.coingate.com/docs/get-order
 await coingate.getOrder(orderId);
 
+// https://developer.coingate.com/docs/checkout
+await coingate.checkoutOrder({
+  order_id, pay_currency
+});
+
 // https://developer.coingate.com/docs/list-orders
 await coingate.listOrders();
 
@@ -59,13 +64,13 @@ npm run test
 --------------|----------|----------|----------|----------|-------------------|
 File          |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
 --------------|----------|----------|----------|----------|-------------------|
-All files     |    97.48 |    64.29 |      100 |    97.48 |                   |
+All files     |    96.03 |    56.25 |      100 |    96.03 |                   |
  src          |      100 |      100 |      100 |      100 |                   |
   index.js    |      100 |      100 |      100 |      100 |                   |
- src/client   |    94.44 |    64.29 |      100 |    94.44 |                   |
+ src/client   |    91.23 |    56.25 |      100 |    91.23 |                   |
   api.js      |      100 |      100 |      100 |      100 |                   |
   config.js   |      100 |    66.67 |      100 |      100 |                 5 |
-  index.js    |    90.63 |    42.86 |      100 |    90.63 |          28,56,61 |
+  index.js    |    85.29 |    33.33 |      100 |    85.29 |    28,56,57,59,64 |
  test         |      100 |      100 |      100 |      100 |                   |
   client.js   |      100 |      100 |      100 |      100 |                   |
   coingate.js |      100 |      100 |      100 |      100 |                   |

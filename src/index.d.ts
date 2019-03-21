@@ -4,8 +4,9 @@ export let Client: Coingate;
 export let Config: ConfigType;
 
 interface ClientType {
+  checkoutOrder(order_id: number, pay_currency: string): Promise<Order>;
   createOrder(options: CreateOrderOptions): Promise<Order>;
-  getOrder(orderId: number): Promise<Order>;
+  getOrder(order_id: number): Promise<Order>;
   listOrders(options?: ListOrderOptions): Promise<ListOrdersReturn>;
   getExchangeRate(from: string, to: string): Promise<number>;
   listExchangeRates(): Promise<ExchangeRatesReturn>;
