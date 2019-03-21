@@ -16,6 +16,9 @@ module.exports = {
   async getOrder(order_id) {
     return { method: 'GET', entity: `orders/${ order_id }` };
   },
+  async IPAddresses({ separator } = {}) {
+    return { method: 'GET', entity: 'ips-v4', params: { separator } };
+  },
   async listOrders({ per_page = 100, page = 1, sort = 'created_at_desc' } = {}) {
     return { method: 'GET', entity: 'orders', params: { per_page, page, sort } };
   },
