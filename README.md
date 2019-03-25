@@ -20,7 +20,7 @@ Creating a client:
 const { client, testClient, Client, Config } = require('coingate-v2');
 
 const coingate = client('your-token');
-const testCongate = testClient('your-token');
+const testCoingate = testClient('your-token');
 ```
 
 Available methods:
@@ -32,12 +32,10 @@ await coingate.createOrder({
 });
 
 // https://developer.coingate.com/docs/get-order
-await coingate.getOrder(orderId);
+await coingate.getOrder(order_id);
 
 // https://developer.coingate.com/docs/checkout
-await coingate.checkoutOrder({
-  order_id, pay_currency
-});
+await coingate.checkoutOrder(order_id, pay_currency);
 
 // https://developer.coingate.com/docs/list-orders
 await coingate.listOrders();
@@ -50,6 +48,9 @@ await coingate.listExchangeRates();
 
 // https://developer.coingate.com/docs/ping
 await coingate.ping();
+
+// https://developer.coingate.com/docs/ip-addresses
+await coingate.IPAddresses();
 ```
 
 Running tests:

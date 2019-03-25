@@ -91,4 +91,10 @@ describe('Client', () => {
 
     expect(rate).to.be.above(0);
   });
+
+  it('should get the list of IP addresses', async () => {
+    const addresses = await client.IPAddresses();
+
+    expect(addresses).to.be.a.string;
+  })
 });
