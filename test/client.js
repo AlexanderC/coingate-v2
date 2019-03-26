@@ -1,7 +1,11 @@
 const { Client, Config } = require('../src/index');
 const api = require('../src/client/api');
+const chai = require('chai');
 const { expect } = require('chai');
+const chaiAsPromised = require('chai-as-promised');
 const { token } = require('./config.json');
+
+chai.use(chaiAsPromised);
 
 describe('Client', () => {
   var order = null;
@@ -52,10 +56,28 @@ describe('Client', () => {
     ));
   });
 
+  it('should not be able to create an invalid order', async () => {
+    const price_amount = 'xxx';
+    const price_currency = 'xxx';
+    const receive_currency = 'xxx';
+
+    const badOrder = client.createOrder({
+      price_amount, price_currency, receive_currency,
+    });
+
+    expect(badOrder).to.eventually.be.rejectedWith('OrderIsNotValid');
+  });
+
   it('should be able to retrieve order', async () => {
     const orderToCheck = await client.getOrder(order.id);
 
     expect(orderToCheck).to.deep.equal(order);
+  });
+
+  it('should not be able to retrieve invalid order', () => {
+    const badOrder = client.getOrder('xxxxx');
+
+    expect(badOrder).to.eventually.be.rejectedWith('OrderNotFound');
   });
 
   it('should be able to list the orders', async () => {
@@ -65,7 +87,13 @@ describe('Client', () => {
     expect(result.orders).to.have.lengthOf.at.least(1);
     expect(result.orders[0]).to.deep.equal(order);
   });
-  
+
+  it('should reject on invalid per_page setting', async () => {
+    const badRequest = client.listOrders({per_page: 'a'})
+
+    expect(badRequest).to.eventually.be.rejected;
+  });
+
   it('should be able to checkout an order', async () => {
     const pay_currency = 'BTC';
     const orderToCheckout = await client.checkoutOrder(order.id, pay_currency);
